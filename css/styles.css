@@ -1,0 +1,592 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+}
+
+.global-container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  justify-content: center;
+  grid-template: 0.5fr 3% 0.5fr 20% 1fr 60% 1fr 8% / 1fr;
+  transition: grid-template 0.5s ease-in-out;
+}
+@media (min-width: 768px){
+  .global-container{
+    width: 40vw;
+  }
+}
+
+.scoreBar {
+  grid-area: 2/1/3/2;
+  border: solid black 1px;
+  border-radius: 3px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  overflow: hidden;
+  position: relative;
+  
+  /* Ajout de la transition */
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-out , visibility 1s linear 0.5s;
+}
+@media (min-width: 768px){
+  .scoreBar {
+    max-width: 40vw;
+  }
+}
+
+/* Classe pour cacher scoreBar */
+.scoreBar-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+
+.progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: green;
+  transition: width 0.5s ease-in-out;
+}
+
+/* #testButton {
+  position: absolute;
+  transform: translateY(300px);
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+#testButton:hover {
+  background-color: #2980b9;
+} */
+
+/* #region slider */
+.slider {
+  grid-area: 4/1/5/2;
+  border: solid black 1px;
+  border-radius: 10px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+@media (min-width: 768px){
+  .slider{
+    width: 40vw;
+  }
+}
+.splide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.splide__slide {
+  position: relative; /* Permet de positionner les éléments enfants */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.song {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Empêche l’image de déborder */
+  width: 100%;
+  height: 100%;
+}
+
+.song img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+@media (min-width: 768px){
+  .song img{ 
+    width: 100%;
+  transform: scale(1);
+      
+  }
+}
+
+#FromTheStar img {
+  transform: scale(1.5);
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 10; /* S’assure que le titre passe au-dessus */
+  white-space: nowrap;
+}
+
+/* #region expliquations  */
+
+#expliquationsSwipe h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  transform: translateX(0); /* Position initiale */
+  transition: transform 1s ease-in-out; /* Transition pour le déplacement */
+}
+
+/* Animation de décalage vers la gauche, et retour au centre avec un délai entre chaque animation */
+#expliquationsSwipe h1.animate {
+  animation: moveLeftBackToCenter 2.5s ease-in-out infinite;
+  animation-delay: 2s; /* Le délai est de 2 secondes entre chaque répétition */
+}
+
+/* Définir l'animation moveLeftBackToCenter */
+@keyframes moveLeftBackToCenter {
+  0% {
+    transform: translateX(0); /* Position initiale */
+  }
+  25% {
+    transform: translateX(-20px); /* Déplace légèrement vers la gauche */
+  }
+  50% {
+    transform: translateX(0); /* Retour au centre */
+  }
+  75% {
+    transform: translateX(-2px); /* Déplace légèrement vers la gauche */
+  }
+  100% {
+    transform: translateX(0); /* Retour au centre */
+  }
+}
+
+#expliquationsStop h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  transform: scale(
+    1
+  ); /* Position initiale avec une échelle de 1 (taille normale) */
+  transition: transform 1s ease-in-out; /* Transition pour le zoom */
+}
+
+/* Animation de zoom léger avec un délai entre chaque animation */
+#expliquationsStop h1.animate {
+  animation: zoomInOut 1.5s ease-in-out infinite;
+  animation-delay: 0s, 2s; /* Le délai est de 2 secondes entre chaque répétition */
+}
+
+/* Définir l'animation de zoom */
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1.05); /* Taille initiale */
+  }
+  25% {
+    transform: scale(1); /* Zoom léger (agrandissement) */
+  }
+  50% {
+    transform: scale(1.05); /* Retour à la taille normale */
+  }
+  75% {
+    transform: scale(1.05); /* Zoom léger (agrandissement) */
+  }
+  100% {
+    transform: scale(1.05); /* Retour à la taille normale */
+  }
+}
+
+/* #endregion expliquations  */
+
+/* #endregion slider */
+
+/* #region guitareneck */
+.guitarNeck {
+  width: 96%;
+  height: 98%;
+  grid-area: 5/1/8/2;
+  border: solid black 1px;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  grid-template: 0.4fr 1.8fr 1.7fr 1.6fr 1.5fr 1.5fr 1.3fr 1.3fr 1.2fr 1fr 1.1fr 1fr 1fr 1fr 1fr / repeat(
+      6,
+      1fr
+    );
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+@media (min-width: 768px){
+  .guitarNeck {
+    max-width: 40vw;
+  }
+}
+.guitarNeck img {
+  grid-area: 1/1/-1/-1;
+  width: 100%;
+  height: 100%;
+}
+
+/* #endregion guitareneck */
+
+/* #region button-container */
+
+.guitarNeck > .buttonNotes {
+  width: 80%;
+  height: 80%;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  place-self: center;
+  background-color: antiquewhite;
+  margin: 2%;
+  opacity: 0;
+  pointer-events: none;
+}
+/* #region E string */
+.guitarNeck > .e-string-f {
+  grid-area: 2/1/3/2;
+}
+.guitarNeck > .e-string-f- {
+  grid-area: 3/1/4/2;
+}
+.guitarNeck > .e-string-g {
+  grid-area: 4/1/5/2;
+}
+.guitarNeck > .e-string-g- {
+  grid-area: 5/1/6/2;
+}
+.guitarNeck .e-string-a {
+  grid-area: 6/1/7/2;
+}
+.guitarNeck > .e-string-a- {
+  grid-area: 7/1/8/2;
+}
+.guitarNeck > .e-string-b {
+  grid-area: 8/1/9/2;
+}
+.guitarNeck > .e-string-c {
+  grid-area: 9/1/10/2;
+}
+.guitarNeck > .e-string-c- {
+  grid-area: 10/1/11/2;
+}
+.guitarNeck > .e-string-d {
+  grid-area: 11/1/12/2;
+}
+.guitarNeck > .e-string-d- {
+  grid-area: 12/1/13/2;
+}
+.guitarNeck > .e-string-e {
+  grid-area: 13/1/14/2;
+}
+.guitarNeck > .e-string-f2 {
+  grid-area: 14/1/15/2;
+}
+.guitarNeck > .e-string-f-2 {
+  grid-area: 15/1/16/2;
+}
+/* #endregion E string */
+/* #region A string */
+.guitarNeck > .a-string-a- {
+  grid-area: 2/2/3/3;
+}
+.guitarNeck > .a-string-b {
+  grid-area: 3/2/4/3;
+}
+.guitarNeck > .a-string-c {
+  grid-area: 4/2/5/3;
+}
+.guitarNeck > .a-string-c- {
+  grid-area: 5/2/6/3;
+}
+.guitarNeck > .a-string-d {
+  grid-area: 6/2/7/3;
+}
+.guitarNeck > .a-string-d- {
+  grid-area: 7/2/8/3;
+}
+.guitarNeck > .a-string-e {
+  grid-area: 8/2/9/3;
+}
+.guitarNeck > .a-string-f {
+  grid-area: 9/2/10/3;
+}
+.guitarNeck > .a-string-f- {
+  grid-area: 10/2/11/3;
+}
+.guitarNeck > .a-string-g {
+  grid-area: 11/2/12/3;
+}
+.guitarNeck > .a-string-g- {
+  grid-area: 12/2/13/3;
+}
+.guitarNeck > .a-string-a {
+  grid-area: 13/2/14/3;
+}
+.guitarNeck > .a-string-a-2 {
+  grid-area: 14/2/15/3;
+}
+.guitarNeck > .a-string-b2 {
+  grid-area: 15/2/16/3;
+}
+/* #endregion A string */
+/* #region D string */
+.guitarNeck > .d-string-d- {
+  grid-area: 2/3/3/4;
+}
+.guitarNeck > .d-string-e {
+  grid-area: 3/3/4/4;
+}
+.guitarNeck > .d-string-f {
+  grid-area: 4/3/5/4;
+}
+.guitarNeck > .d-string-f- {
+  grid-area: 5/3/6/4;
+}
+.guitarNeck > .d-string-g {
+  grid-area: 6/3/7/4;
+}
+.guitarNeck > .d-string-g- {
+  grid-area: 7/3/8/4;
+}
+.guitarNeck > .d-string-a {
+  grid-area: 8/3/9/4;
+}
+.guitarNeck > .d-string-a- {
+  grid-area: 9/3/10/4;
+}
+.guitarNeck > .d-string-b {
+  grid-area: 10/3/11/4;
+}
+.guitarNeck > .d-string-c {
+  grid-area: 11/3/12/4;
+}
+.guitarNeck > .d-string-c- {
+  grid-area: 12/3/13/4;
+}
+.guitarNeck > .d-string-d {
+  grid-area: 13/3/14/4;
+}
+.guitarNeck > .d-string-d-2 {
+  grid-area: 14/3/15/4;
+}
+.guitarNeck > .d-string-e2 {
+  grid-area: 15/3/16/4;
+}
+/* #endregion D string */
+/* #region G string */
+.guitarNeck > .g-string-g- {
+  grid-area: 2/4/3/5;
+}
+.guitarNeck > .g-string-a {
+  grid-area: 3/4/4/5;
+}
+.guitarNeck > .g-string-a- {
+  grid-area: 4/4/5/5;
+}
+.guitarNeck > .g-string-b {
+  grid-area: 5/4/6/5;
+}
+.guitarNeck > .g-string-c {
+  grid-area: 6/4/7/5;
+}
+.guitarNeck > .g-string-c- {
+  grid-area: 7/4/8/5;
+}
+.guitarNeck > .g-string-d {
+  grid-area: 8/4/9/5;
+}
+.guitarNeck > .g-string-d- {
+  grid-area: 9/4/10/5;
+}
+.guitarNeck > .g-string-e {
+  grid-area: 10/4/11/5;
+}
+.guitarNeck > .g-string-f {
+  grid-area: 11/4/12/5;
+}
+.guitarNeck > .g-string-f- {
+  grid-area: 12/4/13/5;
+}
+.guitarNeck > .g-string-g {
+  grid-area: 13/4/14/5;
+}
+.guitarNeck > .g-string-g-2 {
+  grid-area: 14/4/15/5;
+}
+.guitarNeck > .g-string-a2 {
+  grid-area: 15/4/16/5;
+}
+/* #endregion G string */
+/* #region B string */
+.guitarNeck > .b-string-c {
+  grid-area: 2/5/3/6;
+}
+.guitarNeck > .b-string-c- {
+  grid-area: 3/5/4/6;
+}
+.guitarNeck > .b-string-d {
+  grid-area: 4/5/5/6;
+}
+.guitarNeck > .b-string-d- {
+  grid-area: 5/5/6/6;
+}
+.guitarNeck > .b-string-e {
+  grid-area: 6/5/7/6;
+}
+.guitarNeck > .b-string-f {
+  grid-area: 7/5/8/6;
+}
+.guitarNeck > .b-string-f- {
+  grid-area: 8/5/9/6;
+}
+.guitarNeck > .b-string-g {
+  grid-area: 9/5/10/6;
+}
+.guitarNeck > .b-string-g- {
+  grid-area: 10/5/11/6;
+}
+.guitarNeck > .b-string-a {
+  grid-area: 11/5/12/6;
+}
+.guitarNeck > .b-string-a- {
+  grid-area: 12/5/13/6;
+}
+.guitarNeck > .b-string-b {
+  grid-area: 13/5/14/6;
+}
+.guitarNeck > .b-string-c2 {
+  grid-area: 14/5/15/6;
+}
+.guitarNeck > .b-string-c-2 {
+  grid-area: 15/5/16/6;
+}
+
+/* #endregion B string */
+/* #region E2 string */
+.guitarNeck > .e2-string-f {
+  grid-area: 2/6/3/7;
+}
+.guitarNeck > .e2-string-f- {
+  grid-area: 3/6/4/7;
+}
+.guitarNeck > .e2-string-g {
+  grid-area: 4/6/5/7;
+}
+.guitarNeck > .e2-string-g- {
+  grid-area: 5/6/6/7;
+}
+.guitarNeck > .e2-string-a {
+  grid-area: 6/6/7/7;
+}
+.guitarNeck > .e2-string-a- {
+  grid-area: 7/6/8/7;
+}
+.guitarNeck > .e2-string-b {
+  grid-area: 8/6/9/7;
+}
+.guitarNeck > .e2-string-c {
+  grid-area: 9/6/10/7;
+}
+.guitarNeck > .e2-string-c- {
+  grid-area: 10/6/11/7;
+}
+.guitarNeck > .e2-string-d {
+  grid-area: 11/6/12/7;
+}
+.guitarNeck > .e2-string-d- {
+  grid-area: 12/6/13/7;
+}
+.guitarNeck > .e2-string-e {
+  grid-area: 13/6/14/7;
+}
+.guitarNeck > .e2-string-f2 {
+  grid-area: 14/6/15/7;
+}
+.guitarNeck > .e2-string-f-2 {
+  grid-area: 15/6/16/7;
+}
+
+/* #endregion E2 string */
+
+/* #endregion button-container */
+
+/* #region navbar */
+
+.navBar {
+  width: 96%;
+  height: 8vh;
+  position: fixed;
+  bottom: 0;
+  border: solid black 1px;
+  grid-area: 8/1/2/9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+@media (min-width: 768px){
+  .navBar{
+    width: 40vw;
+  }
+}
+.navBar>button{
+  height: 70%;
+  width: 10%;
+}
+.navBar>button>.hide{
+  display: none;
+}
+#escapeGuitarNeck{
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* #endregion navbar */
+
+/* #region class active */
+
+.hidden {
+  display: none;
+}
+
+/* Style pour le bouton quand il est cliqué */
+.buttonNotes.clicked {
+  background-color: #4caf50;
+  color: white; 
+}
+
+
+/* #endregion class active */
+
