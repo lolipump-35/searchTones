@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/splide.min.css" />
@@ -31,12 +32,18 @@
               </li>
 
               <li class="splide__slide" id="ShadyGrove">
-                <div class="song" data-tonalite="F-" data-url="slider/song/Shady Grove (1).mp3">
+                <div class="song" data-tonalite="F-">
                   <div class="title">
                     <h1>Shady Grove</h1>
                     <p>Doc Watson</p>
                   </div>
                   <img src="slider/img/shadycover.png" alt="" />
+                  <audio muted>
+                    <source
+                      src="slider/song/Shady Grove (1).mp3"
+                      type="audio/mpeg"
+                    />
+                  </audio>
                 </div>
               </li>
 
@@ -248,20 +255,8 @@
       </section>
     </div>
 
-    <script src="js/scripts.js"></script>
+    <script src="js/script2.js"></script>
     <script src="js/splide.min.js"></script>
   </body>
 </html>
 
-<!-- allButtonsNotes.forEach((buttonNote) => {
-  buttonNote.addEventListener("click", function () {
-    console.log("button cliquer:", buttonNote);
-
-    let currentNote = buttonNote.classList[2];
-    console.log("note cliquer:", currentNote);
-
-    if (currentNote === tonalite) {
-      buttonNote.style.backgroundColor = "green";
-    }
-  });
-}); -->

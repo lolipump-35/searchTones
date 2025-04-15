@@ -104,7 +104,6 @@ function mixSlides() {
 document.addEventListener("DOMContentLoaded", function () {
   mixSlides();
 
-  //#region initialisation slider
   var splide = new Splide(".splide", {
     width: "100%",
     type: "slide",
@@ -442,13 +441,6 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(function () {
     document.querySelector("#expliquationsSwipe h1").classList.add("animate");
   }, 1000); // 3000ms = 3 secondes
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Attendre 3 secondes avant d'ajouter la classe pour l'animation
-  setTimeout(function () {
-    document.querySelector("#expliquationsStop h1").classList.add("animate");
-  }, 3000); // 3000ms = 3 secondes
 });
 
 // #endregion animation expliquations
